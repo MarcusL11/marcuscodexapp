@@ -2677,6 +2677,14 @@ a:hover {
   margin-top: 1rem;
 }
 
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -2694,6 +2702,10 @@ a:hover {
 
 .grid {
   display: grid;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-5 {
@@ -2724,6 +2736,10 @@ a:hover {
   width: 100%;
 }
 
+.list-disc {
+  list-style-type: disc;
+}
+
 .grid-flow-col {
   grid-auto-flow: column;
 }
@@ -2736,8 +2752,16 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-end {
   justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .gap-2 {
@@ -2804,8 +2828,20 @@ a:hover {
   padding-top: 5rem;
 }
 
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
 .text-left {
   text-align: left;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-2xl {
@@ -2821,6 +2857,11 @@ a:hover {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-bold {
@@ -2849,6 +2890,10 @@ a:hover {
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.no-underline {
+  text-decoration-line: none;
 }
 
 .shadow {
@@ -2924,6 +2969,10 @@ a:hover {
 @media (min-width: 640px) {
   .sm\:visible {
     visibility: visible;
+  }
+
+  .sm\:block {
+    display: block;
   }
 
   .sm\:hidden {
