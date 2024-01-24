@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
-    blogposts = BlogPost.objects.all()
+    blogposts = BlogPost.objects.all().order_by('-publish_date')
     latest_blog_post = BlogPost.objects.order_by('-publish_date').first()
     latest_blog_intro = latest_blog_post.intro[:250]
     tags = Tag.objects.values('name').distinct().order_by('name')
@@ -57,7 +57,7 @@ def categories(request, tag_id=None):
         try:
             tag = get_object_or_404(Tag, name=tag_id)
             blog_categories = BlogPost.objects.filter(tags=tag).order_by('-publish_date')
-            tags = Tag.objects.filter(blogpost__in=blog_categories).order_by('name')
+            tags = Tag.objects.filter(blogpost__in=blog_categories).order_by('name').distinct()
             context = {
                 'blog_categories': blog_categories,
                 'tags': tags,

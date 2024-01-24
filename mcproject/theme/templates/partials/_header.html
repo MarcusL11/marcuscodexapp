@@ -8,7 +8,6 @@
         </div>
         <div class="sm:navbar-end invisible sm:visible">
         <a href="{% url 'home' %}" class="btn btn-ghost">Home</a>
-        {% comment %} <a href="{% url 'about' %}" class="btn btn-ghost">About</a> {% endcomment %}
 
         <!-- Conditional statement nav bar of log in and log out based on user authentication status start -->
         {% if request.user.is_authenticated %}
@@ -16,7 +15,7 @@
                 <div tabindex="0" role="button" class="btn m-1">
                     <div class="avatar">
                     <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="" alt="Profile Picture"/>
+                        <img src="{{ subscriber.profile_pic.url }}" alt="Profile Picture"/>
                     </div>
                     </div>          
                 </div>
