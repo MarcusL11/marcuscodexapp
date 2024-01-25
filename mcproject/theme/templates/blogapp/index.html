@@ -7,8 +7,20 @@ MarcusCodex - Home
 {% block body %}
 <main>
   <div class="container text-sm">
+    <!-- Breadcrumbs Start -->
+    <div class="text-sm breadcrumbs pt-20">
+      <ul>
+        <li><a href={% url "home" %} class="hover:text-primary">Home</a></li> 
+      </ul>
+    </div>
+    <!-- Breadcrumbs End -->
+
+    <div class="flex flex-col w-full">
+      <div class="divider"></div>
+    </div>
+
     <!-- Latest Post Start -->
-    <div class="pt-20 flex flex-col text-center">
+    <div class="flex flex-col text-center">
       <h1 class="text-3xl font-extrabold mb-2">AI & Django</h1>
       <h1 class="text-3xl font-extrabold mb-2">Projects, Tips, and Tutorials</h1>
       <div class="text-center py-4">
@@ -16,7 +28,7 @@ MarcusCodex - Home
     </div>    
   </div>
   <h1 class ="pt-10 text-lg font-extrabold mb-2">Latest Post</h1>            
-  <div class="mb-6 card w-container shadow-2xl bg-base-100 rounded-3xl">
+  <div class="mb-6 card w-container shadow-2xl bg-base-100 rounded-3xl duration-500 hover:scale-105 hover:shadow-xl">
     <div class="card-body">
       <a href={% url 'blogpage' slug=latest_blog_post.slug %} style="text-decoration: none" >
         <h2 class="card-title">{{latest_blog_post.title}}</h2>
