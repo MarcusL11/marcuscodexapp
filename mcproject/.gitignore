@@ -1,0 +1,13 @@
+# ignore all venv
+venv
+
+# ignore all .pyc
+*.pyc
+
+# ignore all node_modules
+node_modules
+
+#ignore all .env    
+.env
+```
+
