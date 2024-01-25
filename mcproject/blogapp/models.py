@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 class Subscriber(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscribe = models.BooleanField(default=True)
-    profile_pic = models.ImageField(null=True, blank=True, default = 'default.webp')
+    # profile_pic = models.ImageField(null=True, blank=True, default = 'default.webp')
+    profile_pic = CloudinaryField('image', null=True, blank=True)
 
     def __str__(self):
         return self.user.username + " " + str(self.subscribe)

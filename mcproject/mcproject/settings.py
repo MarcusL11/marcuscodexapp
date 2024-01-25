@@ -1,6 +1,17 @@
 
 from pathlib import Path
+
+# Cloudinary imports 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
+import dj_database_url
+from dotenv import load_dotenv
 import os
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,17 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o^v%y_jl1y)&g9ykzb=umt#yiy5j84vu=p7&1=6y6#d$hwx@12'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ 'https://themarcuscodex.xyz/', 'https://www.themarcuscodex.xyz/' ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,6 +43,8 @@ INSTALLED_APPS = [
     'blogapp',
     'tailwind',
     'theme',
+    'cloudinary',
+    'django_extensions',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -76,11 +91,17 @@ WSGI_APPLICATION = 'mcproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        os.environ.get("EXTERNAL_DATABASE_URL")
+    )
 }
 
 
@@ -122,6 +143,8 @@ STATIC_URL = 'static/'
 
 STATIC_DIR = [BASE_DIR / 'theme/static']
 
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / 'theme/static/images/'
 
@@ -129,3 +152,18 @@ MEDIA_ROOT = BASE_DIR / 'theme/static/images/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Cloudinary  - Django integration
+cloudinary.config( 
+  cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME"),
+  api_key =  os.environ.get("CLOUDINARY_API_KEY"),
+  api_secret = os.environ.get("CLOUDINARY_API_SECRET"),
+
+)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    'API_KEY': os.environ.get("CLOUDINARY_API_KEY"),
+    'API_SECRET': os.environ.get("CLOUDINARY_API_SECRET"), 
+}

@@ -7,12 +7,15 @@ def user_profile(request):
 
     else: 
         if request.user.is_authenticated:
-            subscriber = Subscriber.objects.get(user=request.user)
+            try:
+                subscriber = Subscriber.objects.get(user=request.user)
 
-            user_data = {
-                'subscriber': subscriber,
-            }
+                user_data = {
+                    'subscriber': subscriber,
+                }
 
-            return user_data
+                return user_data
+            except(Subscriber.DoesNotExist):
+                pass
     return {}
 
